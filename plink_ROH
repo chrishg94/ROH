@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --mem=64000
+#SBATCH --job-name=plink-bed
+#SBATCH --partition=short
+
+
+
+# load PLINK 
+module load PLINK/2.00a2.3_x86_64 
+
+VCF=/data/wildcru/kebl7066/VCF_Files
+BED=/data/wildcru/kebl7066/PLINK-Bed/MergedSCLs.bed
+
+
+plink2 --bfile $BED --homozyg --homozyg-window-snp 50 --homozyg-snp 50 --homozyg-window-missing 3 --homozyg-kb 100 --homozyg-density 1000 --allow-extra-chr
+
+
+
+
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --mem=64000
+#SBATCH --job-name=garlic
+#SBATCH --partition=long
+
+module purge
+# module spider garlic
+module load garlic/22
+
+# centromere file created with 0, 0 , 0 3 columns denoting the absence of centromere data
+
+# Input files
+TPED=/data/wildcru/kebl7066/VCF_Files
+Ref=/data/wildcru/kebl7066/Bam_Files/Neofelis_neb_HiC.fasta
+Centr=/data/wildcru/kebl7066/slurm/GARLIC/centromere
+
+
+# Run garlic
+garlic --tped $TPED/CL_15.filter.snp.vcf.noN.vcf.tped --tfam $TPED/CL_15.filter.snp.vcf.noN.vcf.tfam$
+
+
+

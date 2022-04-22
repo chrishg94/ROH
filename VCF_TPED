@@ -1,0 +1,20 @@
+
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --mem=64000
+#SBATCH --job-name=sfs
+#SBATCH --partition=medium
+
+module purge
+module load VCFtools/0.1.16-GCC-11.2.0
+
+# transform vcf files to tped/tfam files
+
+VCF=/data/wildcru/kebl7066/VCF_Files
+
+for i in $VCF/*.vcf.noN.vcf
+do
+vcftools --vcf $i --plink-tped --out $i
+done
+
